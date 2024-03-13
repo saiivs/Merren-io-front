@@ -1,0 +1,39 @@
+<div class="main-container">
+  <div class="login-form">
+    <div class="form-left">
+      <div class="logo-container">
+        <img class="logo" src="../../../assets/logo.jpg" alt="">
+        <span class="txt-clr">Kafh</span>
+      </div>
+      <div class="welcome">
+        <h2 class="txt-clr">Welcome Back!</h2>
+        <p class="txt-clr">Please create your account</p>
+      </div>
+      <form action="" [formGroup]="reactiveForm" (ngSubmit)="registerUser()">
+        <div *ngIf="reactiveForm.get('name')?.invalid&&reactiveForm.get('name')?.dirty||reactiveForm.get('name')?.touched">
+          <small *ngIf="reactiveForm.get('name')?.errors?.['required']">*Name is required</small>
+        </div>
+        <input type="text" placeholder="Name" (input)="clearErrorMsg()" formControlName="name">
+        <div *ngIf="reactiveForm.get('email')?.invalid&&reactiveForm.get('email')?.dirty||reactiveForm.get('email')?.touched">
+          <small *ngIf="reactiveForm.get('email')?.errors?.['required']">*Email is required</small>
+          <small *ngIf="reactiveForm.get('email')?.errors?.['email']">*Invalid email</small>
+        </div>
+        <input type="email" placeholder="Email" (input)="clearErrorMsg()" formControlName="email">
+        <div *ngIf="reactiveForm.get('password')?.invalid&&reactiveForm.get('password')?.dirty||reactiveForm.get('password')?.touched">
+          <small *ngIf="reactiveForm.get('password')?.errors?.['required']">*password is required</small>
+        </div>
+        <input type="password" placeholder="Password" (input)="clearErrorMsg()" formControlName="password">
+
+        <div class="btns">
+          <button type="submit" class="createAcnt">Register</button>
+        </div>
+        <div *ngIf="errorMsg">
+          <small>{{errorMsg}}</small>
+        </div>
+      </form>
+    </div>
+    <div class="img-container">
+      <img src="../../../assets/‏bird.jpg" alt="" />
+    </div>
+  </div>
+</div>

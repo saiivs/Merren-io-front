@@ -1,0 +1,45 @@
+<div class="main-container">
+  <div class="login-form">
+    <div class="form-left">
+      <div class="logo-container">
+        <img class="logo" src="../../../assets/logo.jpg" alt="">
+        <span class="txt-clr">Kafh</span>
+      </div>
+      <div class="welcome">
+        <h2 class="txt-clr">Welcome Back!</h2>
+        <p class="txt-clr">Please log into your account</p>
+      </div>
+      <form action="" [formGroup]="reactiveForm" (ngSubmit)="loginUser()">
+        <div *ngIf="errorMsg">
+          <small>{{errorMsg}}</small>
+        </div>
+        <div *ngIf="reactiveForm.get('email')?.invalid&&reactiveForm.get('email')?.dirty||reactiveForm.get('email')?.touched">
+          <small *ngIf="reactiveForm.get('email')?.errors?.['required']">*Email is required</small>
+          <small *ngIf="reactiveForm.get('email')?.errors?.['email']">*Invalid email</small>
+        </div>
+        <input type="email" placeholder="Email" (input)="clearErrorMsg()" formControlName="email">
+        <div *ngIf="reactiveForm.get('password')?.invalid&&reactiveForm.get('password')?.dirty||reactiveForm.get('password')?.touched">
+          <small *ngIf="reactiveForm.get('password')?.errors?.['required']">Password is required</small>
+          <small *ngIf="reactiveForm.get('password')?.errors?.['min']">minimum 8 characters are allowed</small>
+        </div>
+        <input type="password" placeholder="Password" (input)="clearErrorMsg()" formControlName="password">
+        <div class="RememberME">
+          <div class="checkbox">
+            <input type="checkbox" name="" id="">
+            <label for="">Remember me</label>
+          </div>
+          <div class="forgot">
+            Forgot password?
+          </div>
+        </div>
+        <div class="btns">
+          <button type="submit" class="login">Login</button>
+          <button routerLink="/register-user" class="createAcnt">Create Account</button>
+        </div>
+      </form>
+    </div>
+    <div class="img-container">
+      <img src="../../../assets/‏bird.jpg" alt="" />
+    </div>
+  </div>
+</div>
